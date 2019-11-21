@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Gomoku</string>
+
+    <string name="rules">Write rules here</string>
+    <string name="score">Write scoring details here or something</string>
+    <string name="credits">Diego D\'Gyves and Matthew Thiesen</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>

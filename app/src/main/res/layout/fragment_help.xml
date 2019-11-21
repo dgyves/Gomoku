@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Help">
+
+    <TextView
+        android:id="@+id/credits_text"
+        android:layout_width="380dp"
+        android:layout_height="65dp"
+        android:layout_margin="5dp"
+        android:gravity="center"
+        android:text="@string/credits"
+        android:textSize="25dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.516"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/credits" />
+
+    <TextView
+        android:id="@+id/rules"
+        android:layout_width="380dp"
+        android:layout_height="40dp"
+        android:layout_margin="5dp"
+        android:gravity="center"
+        android:text="Rules"
+        android:textSize="35dp"
+        app:layout_constraintBottom_toTopOf="@+id/rules_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.516"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+    <TextView
+        android:id="@+id/rules_text"
+        android:layout_width="380dp"
+        android:layout_height="40dp"
+        android:layout_margin="5dp"
+        android:gravity="center"
+        android:text="@string/rules"
+        android:textSize="25dp"
+        app:layout_constraintBottom_toTopOf="@+id/score"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.516"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rules" />
+
+    <TextView
+        android:id="@+id/score"
+        android:layout_width="380dp"
+        android:layout_height="40dp"
+        android:layout_margin="5dp"
+        android:gravity="center"
+        android:text="Score"
+        android:textSize="35dp"
+        app:layout_constraintBottom_toTopOf="@+id/score_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.516"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rules_text" />
+
+    <TextView
+        android:id="@+id/credits"
+        android:layout_width="380dp"
+        android:layout_height="40dp"
+        android:layout_margin="5dp"
+        android:gravity="center"
+        android:text="Credits"
+        android:textSize="35dp"
+        app:layout_constraintBottom_toTopOf="@+id/credits_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.516"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/score_text" />
+
+    <TextView
+        android:id="@+id/score_text"
+        android:layout_width="380dp"
+        android:layout_height="86dp"
+        android:layout_margin="5dp"
+        android:gravity="center"
+        android:text="@string/score"
+        android:textSize="25dp"
+        app:layout_constraintBottom_toTopOf="@+id/credits"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.518"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/score" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="380dp"
+        android:layout_height="80dp"
+        android:layout_margin="5dp"
+        android:gravity="center"
+        android:text="Help"
+        android:textSize="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.578"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
