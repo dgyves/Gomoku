@@ -26,6 +26,7 @@ public class GameActivity extends AppCompatActivity {
         boardObject = new Board(1);
 
 
+
         GridView gv = findViewById(R.id.gridView);
     }
 }
