@@ -3,10 +3,16 @@ package com.example.gomoku;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.GridView;
 
 public class GameActivity extends AppCompatActivity {
 
+    private Board boardObject = null;
+    private Activity containerActivity = null;
+    private View view = null;
 
 
 
@@ -16,12 +22,11 @@ public class GameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
-        // Add gameboard fragment to UI
-        FragmentTransaction trans = getSupportFragmentManager().beginTransaction();
+        // TODO: Param is 0 for AI or 1 for Human, shouldnt be static
+        boardObject = new Board(1);
 
-        GameboardFragment boardFrag = new GameboardFragment();
-        boardFrag.setContainerActivity(this);
-        trans.replace(R.id.grid, boardFrag);
-        trans.commit();
+
+
+        GridView gv = findViewById(R.id.gridView);
     }
 }
