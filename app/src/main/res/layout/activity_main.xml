@@ -25,9 +25,9 @@
 
     <ImageView
         android:id="@+id/main_logo"
-        android:layout_width="282dp"
-        android:layout_height="230dp"
-        android:src="@android:drawable/btn_dialog"
+        android:layout_width="350dp"
+        android:layout_height="200dp"
+        android:src="@drawable/gomoku_picture"
         app:layout_constraintBottom_toTopOf="@+id/textView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
