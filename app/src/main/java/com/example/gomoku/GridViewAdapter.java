@@ -11,9 +11,13 @@ public class GridViewAdapter extends BaseAdapter {
     Piece[][] array;
     Context context;
 
-    public GridViewAdapter(Piece[][] pieceArray, Context context) {
+    // Multiply a dp value by this to get a pixel value
+    float dpConvertFactor;
+
+    public GridViewAdapter(Context context, Piece[][] pieceArray) {
         this.array = pieceArray;
         this.context = context;
+        dpConvertFactor = context.getResources().getDisplayMetrics().density;
     }
 
     @Override
@@ -52,12 +56,25 @@ public class GridViewAdapter extends BaseAdapter {
 
         if (convertView == null) {
             // Create new button
-            b = new Button(context);
-            b.setLayoutParams(new GridView.LayoutParams(25,25));
+            b = new Button(context,null,R.style.BoardButton);
 
             // TODO: REMOVE
-            b.setText("o");
+            b.setText("+");
             b.setBackgroundColor(0xFF666666);
+            b.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Button b = (Button) v;
+                    String text = b.getText().toString();
+                    if (text.equals("+")) {
+                        b.setText("-");
+                    }
+                    else {
+                        b.setText("+");
+                    }
+                }
+            });
+
 
         }
         else {
@@ -66,6 +83,7 @@ public class GridViewAdapter extends BaseAdapter {
         }
         return b;
     }
+
 }
 
 

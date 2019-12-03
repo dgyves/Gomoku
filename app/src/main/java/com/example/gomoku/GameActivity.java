@@ -13,6 +13,7 @@ public class GameActivity extends AppCompatActivity {
     private Board boardObject = null;
     private Activity containerActivity = null;
     private View view = null;
+    private GridViewAdapter gvAdapter = null;
 
 
 
@@ -25,8 +26,9 @@ public class GameActivity extends AppCompatActivity {
         // TODO: Param is 0 for AI or 1 for Human, shouldnt be static
         boardObject = new Board(1);
 
-
-
         GridView gv = findViewById(R.id.gridView);
+
+        gvAdapter = new GridViewAdapter(this, boardObject.getBoardState());
+        gv.setAdapter(gvAdapter);
     }
 }

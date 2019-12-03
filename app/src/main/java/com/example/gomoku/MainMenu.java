@@ -19,4 +19,5 @@ import android.view.View;
          Intent intent = new Intent(this, GameActivity.class);
          startActivity(intent);
      }
+
 }
