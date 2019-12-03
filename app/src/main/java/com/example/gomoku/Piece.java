@@ -6,12 +6,12 @@ public class Piece {
     // x,y grid value
     private int[] coords;
 
-    // Public constructor to initialize board with blanks
+    // Public constructor used when initializing board with blanks
     public Piece (int x, int y) {
         this.coords = new int[]{x,y};
     }
 
-    // Public constructor to initialize a black/white piece
+    // Public constructor to initialize a black/white piece (when placed)
     public Piece (int x, int y, int color) {
         this.coords = new int[]{x,y};
         assert (color == 0 || color == 1);
