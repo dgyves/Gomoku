@@ -6,17 +6,19 @@
     android:layout_height="match_parent"
     tools:context=".GameActivity">
 
-    <LinearLayout
-        android:id="@+id/grid"
-        android:layout_width="380dp"
-        android:layout_height="380dp"
+    <GridView
+        android:id="@+id/gridView"
+        android:layout_width="375dp"
+        android:layout_height="375dp"
         android:layout_margin="5dp"
-        android:orientation="horizontal"
+        android:numColumns="15"
+        android:verticalSpacing="0dp"
+        android:horizontalSpacing="0dp"
         app:layout_constraintBottom_toTopOf="@+id/confirm"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/player1"></LinearLayout>
+        app:layout_constraintTop_toBottomOf="@+id/player1"></GridView>
 
     <TextView
         android:id="@+id/player1"
@@ -26,8 +28,8 @@
         android:gravity="center"
         android:text="Player 1"
         android:textSize="30dp"
-        app:layout_constraintBottom_toTopOf="@+id/grid"
-        app:layout_constraintStart_toStartOf="@+id/grid"
+        app:layout_constraintBottom_toTopOf="@+id/gridView"
+        app:layout_constraintStart_toStartOf="@+id/gridView"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -39,7 +41,7 @@
         android:text="Player 2"
         android:textSize="30dp"
         app:layout_constraintBottom_toBottomOf="@+id/player1"
-        app:layout_constraintEnd_toEndOf="@+id/grid"
+        app:layout_constraintEnd_toEndOf="@+id/gridView"
         app:layout_constraintTop_toTopOf="@+id/player1" />
 
     <Button
@@ -49,10 +51,10 @@
         android:layout_marginStart="16dp"
         android:text="Confirm Move"
         app:layout_constraintBottom_toTopOf="@+id/save"
-        app:layout_constraintEnd_toEndOf="@+id/grid"
+        app:layout_constraintEnd_toEndOf="@+id/gridView"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/grid" />
+        app:layout_constraintTop_toBottomOf="@+id/gridView" />
 
     <Button
         android:id="@+id/save"

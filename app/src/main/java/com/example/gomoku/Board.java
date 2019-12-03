@@ -44,19 +44,21 @@ public class Board {
      * @param y y-coord of piece that was just played
      **/
     public boolean gameWon(int thisPlayer, int x, int y) {
+        int piecesInARow;
+
         // Horizontal
-        int WE_Count = checkWtoE(thisPlayer,1-thisPlayer,true,true,x,y);
-        if (WE_Count >= 5) {return true;}
+        piecesInARow = checkWtoE(thisPlayer,1-thisPlayer,true,true,x,y);
+        if (piecesInARow >= 5) {return true;}
 
         // Vertical
-        int NS_Count = checkNtoS(thisPlayer,1-thisPlayer,true,true, x,y);
-        if (NS_Count >= 5) {return true;}
+        piecesInARow = checkNtoS(thisPlayer,1-thisPlayer,true,true, x,y);
+        if (piecesInARow >= 5) {return true;}
 
         // Diagonals
-        int NWSE_Count = checkNWtoSE(thisPlayer,1-thisPlayer,true,true,x,y);
-        if (NWSE_Count >= 5) {return true;}
-        int SWNE_Count = checkSWtoNE(thisPlayer,1-thisPlayer,true,true,x,y);
-        if (SWNE_Count >= 5) {return true;}
+        piecesInARow = checkNWtoSE(thisPlayer,1-thisPlayer,true,true,x,y);
+        if (piecesInARow >= 5) {return true;}
+        piecesInARow = checkSWtoNE(thisPlayer,1-thisPlayer,true,true,x,y);
+        if (piecesInARow >= 5) {return true;}
 
     return false;
     }
