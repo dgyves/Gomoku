@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/outer"
+    android:background="@drawable/mainmenubackground"
     tools:context=".MainMenu">
 
     <TextView
@@ -14,6 +15,7 @@
         android:text="Gomoku"
         android:textSize="50dp"
         android:textStyle="bold"
+        android:textColor="#AACCCCCC"
         app:layout_constraintBottom_toTopOf="@+id/singleplayer_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -25,9 +27,9 @@
 
     <ImageView
         android:id="@+id/main_logo"
-        android:layout_width="282dp"
-        android:layout_height="230dp"
-        android:src="@android:drawable/btn_dialog"
+        android:layout_width="350dp"
+        android:layout_height="200dp"
+        android:src="@drawable/gomokulogo"
         app:layout_constraintBottom_toTopOf="@+id/textView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -53,7 +55,8 @@
         app:layout_constraintBottom_toBottomOf="@+id/singleplayer_button"
         app:layout_constraintEnd_toEndOf="@+id/main_setting"
         app:layout_constraintTop_toTopOf="@+id/singleplayer_button"
-        android:layout_margin="5dp"/>
+        android:layout_margin="5dp"
+        android:onClick="run2pGame"/>
 
     <Button
         android:id="@+id/main_setting"
