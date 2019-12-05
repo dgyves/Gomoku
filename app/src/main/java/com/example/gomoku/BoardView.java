@@ -1,8 +1,5 @@
 package com.example.gomoku;
 
-
-// TODO: This class is obsolete?
-
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Path;

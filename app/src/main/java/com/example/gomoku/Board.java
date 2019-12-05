@@ -30,11 +30,6 @@ public class Board {
         return this.turn;
     }
 
-    // Return current grid representing board
-    public Piece[][] getBoardState () {
-        return this.grid;
-    }
-
     // After a move is made, change which player's turn it is
     public void advanceTurn() {
         if (this.turn == 1) {this.turn++;}
