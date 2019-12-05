@@ -1,6 +1,7 @@
  package com.example.gomoku;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,4 +21,14 @@ import android.view.View;
          startActivity(intent);
      }
 
+     public void openHelp(View view) {
+         HelpFragment hf = new HelpFragment();
+         //hf.setContainerActivity(this);
+
+         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+
+         transaction.replace(R.id.outer, hf);
+         transaction.addToBackStack(null);
+         transaction.commit();
+     }
 }

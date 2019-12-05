@@ -1,12 +1,19 @@
 package com.example.gomoku;
 
+/*
+This class contains much (probably too much) of the logic for the game
+ */
+
 import android.content.Context;
 import android.view.View;
 import android.view.Gravity;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.GridView;
+import android.widget.ImageView;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class GridViewAdapter extends BaseAdapter {
@@ -60,53 +67,82 @@ public class GridViewAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        final Button b;
+        final ImageView space;
 
         if (convertView == null) {
-            // Create new button
-            b = new Button(context,null,R.style.BoardButton);
-
-            // TODO: BUTTON CREATION SPECS
-            b.setId(position);
-            b.setGravity(Gravity.CENTER);
+            // Create new ImageView representing a single space on the board
+            // TODO: ImageView CREATION SPECS
+            space = new ImageView(context,null,R.style.BoardSpace);
+            space.setId(position);
+            space.setAdjustViewBounds(true);
+            space.setTag(-1);
+            space.setImageDrawable(context.getDrawable(R.drawable.emptysquare));
 
             ///////// THESE ATTRIBUTES FOR TESTING ONLY ///////////////
             // TODO: REMOVE THESE
-            b.setText(".");
-            b.setBackgroundColor(0xFF666666);
+
+            //
             ///////////////////////////////////////////////////////////
 
-            b.setOnClickListener(new View.OnClickListener() {
+            // DECLARE ONCLICK FUNCTION
+            space.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Button b = (Button) v;
+                    ImageView space = (ImageView) v;
 
-                    int pos = b.getId();
+                    int pos = space.getId();
                     int[] posXY = convert1dTo2d(pos);
                     int x = posXY[0];
                     int y = posXY[1];
                     int currentPlayer = containerActivity.currentPlayer;
 
-                    // Check if clicked space is blank, place a piece if so
+                    // Check if clicked space is blank, place a piece if so; ELSE, do nothing.
                     if (canMoveAt(x,y,currentPlayer)) {
-                        // TODO: TESTING CODE, REMOVE /////////////
-                        b.setText(Integer.toString(currentPlayer));
-                        System.out.println("x: "+x+", y:"+y+"\n\n");
+                        space.setTag(currentPlayer);
+                        if (currentPlayer == 0) {
+                            // set black token
+                            space.setImageDrawable(context.getDrawable(R.drawable.black));
+                        } else {
+                            // set white token
+                            space.setImageDrawable(context.getDrawable(R.drawable.white));
+                        }
+
                         ///////////////////////////////////////////
                         // Check game win condition.  If win end game, if not advance turn
                         if (gameBoard.gameWon(currentPlayer,x,y)) {
-                            // Game is over woohoo
-                            Toast toast = Toast.makeText(context, "GAME OVER, " + currentPlayer + " WINS!", Toast.LENGTH_LONG);
+                            // GAME OVER MAN
+                            // TODO: ADDITIONAL CODE FOR GAME OVER CONDITION, NEED TO STOP PIECES
+                            // TODO: FROM BEING PLAYED AT THIS POINT
+                            String color;
+                            if (currentPlayer == 0) {color = "BLACK";}
+                            else {color = "WHITE";}
+                            Toast toast = Toast.makeText(context, "GAME OVER, " + color + " WINS!", Toast.LENGTH_LONG);
                             toast.show();
                         }
                         else {
                             // Game is not over, it's the opponent's turn now
+
+                            // Highlight next player's (opponent) nametag yellow and current player's
+                            // white
+                            TextView tv;
+                            if (currentPlayer==0) {
+                                tv = containerActivity.findViewById(R.id.player1TV);
+                                tv.setBackgroundColor(containerActivity.getResources().getColor(R.color.transparentWhite));
+                                tv = containerActivity.findViewById(R.id.player2TV);
+                                tv.setBackgroundColor(containerActivity.getResources().getColor(R.color.transparentGreen));
+                            } else {
+                                tv = containerActivity.findViewById(R.id.player2TV);
+                                tv.setBackgroundColor(containerActivity.getResources().getColor(R.color.transparentWhite));
+                                tv = containerActivity.findViewById(R.id.player1TV);
+                                tv.setBackgroundColor(containerActivity.getResources().getColor(R.color.transparentGreen));
+                            }
+
+                            // Advance current player tracker
                             containerActivity.currentPlayer = (1-currentPlayer);
                         }
 
                     }
                     else {
-                        // If player clicks an occupied space, nothing should happen
                         return;
                     }
                 }
@@ -115,10 +151,10 @@ public class GridViewAdapter extends BaseAdapter {
 
         }
         else {
-            // Return current button
-            b = (Button) convertView;
+            // Return current ImageView
+            space = (ImageView) convertView;
         }
-        return b;
+        return space;
     }
 
 

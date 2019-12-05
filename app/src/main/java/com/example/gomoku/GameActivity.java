@@ -26,10 +26,17 @@ public class GameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
+
         // TODO: Param is 0 for AI or 1 for Human, shouldnt be static
         boardObject = new Board(1);
 
+        // Define gridview & parameters
         GridView gv = findViewById(R.id.gridView);
+        gv.setVerticalScrollBarEnabled(false);
+        gv.setHorizontalScrollBarEnabled(false);
+        gv.setVerticalSpacing(0);
+        gv.setHorizontalSpacing(0);
+        gv.setStretchMode(GridView.NO_STRETCH);
 
         gvAdapter = new GridViewAdapter(this, boardObject);
         gv.setAdapter(gvAdapter);
