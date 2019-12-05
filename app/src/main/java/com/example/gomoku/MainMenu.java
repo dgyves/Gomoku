@@ -20,6 +20,7 @@ import android.view.View;
          startActivity(intent);
      }
 
+
      public void openHelp(View view) {
          HelpFragment hf = new HelpFragment();
          hf.setContainerActivity(this);
@@ -31,4 +32,3 @@ import android.view.View;
          transaction.commit();
      }
  }
-

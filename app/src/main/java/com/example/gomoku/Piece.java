@@ -25,7 +25,9 @@ public class Piece {
         this.coords = new int[]{x,y};
     }
 
-    public void setColor(int color) {
+    // Public constructor to initialize a black/white piece (when placed)
+    public Piece (int x, int y, int color) {
+        this.coords = new int[]{x,y};
         assert (color == 0 || color == 1);
         this.color = color;
     }
