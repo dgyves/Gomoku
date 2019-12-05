@@ -15,6 +15,9 @@ public class GameActivity extends AppCompatActivity {
     private View view = null;
     private GridViewAdapter gvAdapter = null;
 
+    // 0: Player1, 1: Player2
+    static int currentPlayer = 0;
+
 
 
 
@@ -28,7 +31,9 @@ public class GameActivity extends AppCompatActivity {
 
         GridView gv = findViewById(R.id.gridView);
 
-        gvAdapter = new GridViewAdapter(this, boardObject.getBoardState());
+        gvAdapter = new GridViewAdapter(this, boardObject);
         gv.setAdapter(gvAdapter);
     }
+
+
 }
