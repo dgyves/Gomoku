@@ -8,4 +8,11 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="BoardButton" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:layout_width">25dp</item>
+        <item name="android:layout_height">25dp</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textSize">8sp</item>
+    </style>
 </resources>
