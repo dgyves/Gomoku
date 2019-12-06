@@ -24,10 +24,17 @@ import android.view.View;
      public void openHelp(View view) {
          HelpFragment hf = new HelpFragment();
          hf.setContainerActivity(this);
-
          FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-
          transaction.replace(R.id.outer, hf);
+         transaction.addToBackStack(null);
+         transaction.commit();
+     }
+
+     public void openSettings(View view) {
+         SettingsFragment sf = new SettingsFragment();
+         sf.setContainerActivity(this);
+         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+         transaction.replace(R.id.outer, sf);
          transaction.addToBackStack(null);
          transaction.commit();
      }
