@@ -6,12 +6,8 @@ This class contains much (probably too much) of the logic for the game
 
 import android.content.Context;
 import android.view.View;
-import android.view.Gravity;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
-import android.widget.GridView;
-import android.widget.ImageView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -71,18 +67,11 @@ public class GridViewAdapter extends BaseAdapter {
 
         if (convertView == null) {
             // Create new ImageView representing a single space on the board
-            // TODO: ImageView CREATION SPECS
             space = new ImageView(context,null,R.style.BoardSpace);
             space.setId(position);
             space.setAdjustViewBounds(true);
             space.setTag(-1);
             space.setImageDrawable(context.getDrawable(R.drawable.emptysquare));
-
-            ///////// THESE ATTRIBUTES FOR TESTING ONLY ///////////////
-            // TODO: REMOVE THESE
-
-            //
-            ///////////////////////////////////////////////////////////
 
             // DECLARE ONCLICK FUNCTION
             space.setOnClickListener(new View.OnClickListener() {
@@ -111,18 +100,21 @@ public class GridViewAdapter extends BaseAdapter {
                         // Check game win condition.  If win end game, if not advance turn
                         if (gameBoard.gameWon(currentPlayer,x,y)) {
                             // GAME OVER MAN
-                            // TODO: ADDITIONAL CODE FOR GAME OVER CONDITION, NEED TO STOP PIECES
-                            // TODO: FROM BEING PLAYED AT THIS POINT
+                            // TODO: ADDITIONAL CODE FOR GAME OVER CONDITION, NEED TO STOP ADDITIONAL PIECES FROM BEING PLAYED / GO INTO SCREENSHOT SHARING STUFF
+
+                            // Toast winner
                             String color;
                             if (currentPlayer == 0) {color = "BLACK";}
                             else {color = "WHITE";}
                             Toast toast = Toast.makeText(context, "GAME OVER, " + color + " WINS!", Toast.LENGTH_LONG);
                             toast.show();
+                            /////////////////
+
                         }
                         else {
                             // Game is not over, it's the opponent's turn now
 
-                            // Highlight next player's (opponent) nametag yellow and current player's
+                            // Highlight next player's (opponent) nametag green and current player's
                             // white
                             TextView tv;
                             if (currentPlayer==0) {
@@ -172,6 +164,7 @@ public class GridViewAdapter extends BaseAdapter {
         }
         return false;
     }
+
 
 }
 

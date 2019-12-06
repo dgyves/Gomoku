@@ -5,11 +5,10 @@ public class Board {
     // Track AI (0) or human (1)
     private final int p1 = 1;
     private int p2;
-    private int turn;
 
     /**
      * Constructor - initialize the board with blank Pieces
-     * @param p2 sets player 2 as human or AI
+     * @param p2 sets player 2 as AI or Human
      */
     public Board (int p2) {
         // Generate game board
@@ -22,12 +21,6 @@ public class Board {
 
         // Set whether player 2 is AI (0) or human (1)
         this.p2 = p2;
-        turn = 1;
-    }
-
-    // Return 1 for p1, 2 for p2
-    public int whoseTurnIsItAnyway() {
-        return this.turn;
     }
 
     // Return current grid representing board
@@ -35,11 +28,6 @@ public class Board {
         return this.grid;
     }
 
-    // After a move is made, change which player's turn it is
-    public void advanceTurn() {
-        if (this.turn == 1) {this.turn++;}
-        else {this.turn = 1;}
-    }
 
     /**
      * Called each time a Piece has just been placed.
@@ -100,6 +88,7 @@ public class Board {
             return 1 + checkWtoE(thisColor, otherColor, false, false, x + 1, y);
         }
     }
+
     /**
      * Check the North-to-South (vertical) axis to see how many of <thisColor> there are in a row
      @param thisColor represents player that just made the move

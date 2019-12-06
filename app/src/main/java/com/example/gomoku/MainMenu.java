@@ -13,17 +13,23 @@ import android.view.View;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        System.out.println("commit");
     }
 
-     public void run2pGame (View view) {
-         Intent intent = new Intent(this, GameActivity.class);
-         startActivity(intent);
-     }
+    public void run1pGame (View view) {
+        Intent intent = new Intent(this, GameActivity.class);
+        intent.putExtra("Players",0);
+        startActivity(intent);
+    }
+
+    public void run2pGame (View view) {
+        Intent intent = new Intent(this, GameActivity.class);
+        intent.putExtra("Players",1);
+        startActivity(intent);
+    }
 
      public void openHelp(View view) {
          HelpFragment hf = new HelpFragment();
-         //hf.setContainerActivity(this);
+         hf.setContainerActivity(this);
 
          FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 

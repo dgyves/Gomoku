@@ -18,7 +18,7 @@
         android:verticalSpacing="0dp"
         android:horizontalSpacing="0dp"
         android:background="#FFFFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/confirm"
+        app:layout_constraintBottom_toTopOf="@+id/reset"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -55,16 +55,18 @@
         app:layout_constraintTop_toTopOf="@+id/player1TV" />
 
     <Button
-        android:id="@+id/confirm"
+        android:id="@+id/reset"
         android:layout_width="380dp"
         android:layout_height="60dp"
         android:layout_marginStart="16dp"
-        android:text="Confirm Move"
+        android:textColor="#CC2222"
+        android:text="Reset Game"
         app:layout_constraintBottom_toTopOf="@+id/save"
         app:layout_constraintEnd_toEndOf="@+id/gridView"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gridView" />
+        app:layout_constraintTop_toBottomOf="@+id/gridView"
+        android:onClick="resetGame"/>
 
     <Button
         android:id="@+id/save"
@@ -72,8 +74,8 @@
         android:layout_height="60dp"
         android:text="Save"
         app:layout_constraintBottom_toTopOf="@+id/help"
-        app:layout_constraintStart_toStartOf="@+id/confirm"
-        app:layout_constraintTop_toBottomOf="@+id/confirm" />
+        app:layout_constraintStart_toStartOf="@+id/reset"
+        app:layout_constraintTop_toBottomOf="@+id/reset" />
 
     <Button
         android:id="@+id/Load"
@@ -81,8 +83,8 @@
         android:layout_height="60dp"
         android:text="Load"
         app:layout_constraintBottom_toTopOf="@+id/help"
-        app:layout_constraintEnd_toEndOf="@+id/confirm"
-        app:layout_constraintTop_toBottomOf="@+id/confirm" />
+        app:layout_constraintEnd_toEndOf="@+id/reset"
+        app:layout_constraintTop_toBottomOf="@+id/reset" />
 
     <Button
         android:id="@+id/confirm3ettings"
