@@ -15,10 +15,17 @@ import android.view.View;
         setContentView(R.layout.activity_main);
     }
 
-     public void run2pGame (View view) {
-         Intent intent = new Intent(this, GameActivity.class);
-         startActivity(intent);
-     }
+    public void run1pGame (View view) {
+        Intent intent = new Intent(this, GameActivity.class);
+        intent.putExtra("Players",0);
+        startActivity(intent);
+    }
+
+    public void run2pGame (View view) {
+        Intent intent = new Intent(this, GameActivity.class);
+        intent.putExtra("Players",1);
+        startActivity(intent);
+    }
 
 
      public void openHelp(View view) {
@@ -29,6 +36,8 @@ import android.view.View;
          transaction.addToBackStack(null);
          transaction.commit();
      }
+
+
 
      public void openSettings(View view) {
          SettingsFragment sf = new SettingsFragment();
