@@ -4,17 +4,13 @@ package com.example.gomoku;
 This class contains much (probably too much) of the logic for the game
  */
 
-import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
 import android.content.Context;
-import android.transition.ChangeBounds;
-import android.transition.TransitionManager;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AnticipateOvershootInterpolator;
+import android.view.animation.Animation;;
 import android.view.animation.ScaleAnimation;
+import android.widget.AbsListView;
 import android.widget.BaseAdapter;
-import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -103,23 +99,42 @@ public class GridViewAdapter extends BaseAdapter {
 
                             /////////////// TODO: TESTING ANIMATION CODE
                             ImageView iv = (ImageView) v;
-
-                            ScaleAnimation anim = new ScaleAnimation(200f, 25f, 200f, 25f);
-                            anim.setDuration(300);
+                            int wh_large = (int)(50f*dpConvertFactor);
+                            AbsListView.LayoutParams params = new AbsListView.LayoutParams(wh_large,wh_large);
+                            iv.setLayoutParams(params);
+                            ScaleAnimation anim = new ScaleAnimation(2f, 1f, 2f, 1f, Animation.ABSOLUTE,iv.getPivotX(),Animation.ABSOLUTE,iv.getPivotY());
+                            anim.setDuration(250);
                             anim.setFillAfter(true);
-
-
+                            iv.startAnimation(anim);
+                            int wh_orig = (int)(25f*dpConvertFactor);
+                            params = new AbsListView.LayoutParams(wh_orig,wh_orig);
+                            iv.setLayoutParams(params);
                             ////////////// // TODO: END ANIMATION TESTING
+
                         } else {
                             // set white token
                             space.setImageDrawable(context.getDrawable(R.drawable.white));
+
+                            /////////////// TODO: TESTING ANIMATION CODE
+                            ImageView iv = (ImageView) v;
+                            int wh_large = (int)(50f*dpConvertFactor);
+                            AbsListView.LayoutParams params = new AbsListView.LayoutParams(wh_large,wh_large);
+                            iv.setLayoutParams(params);
+                            ScaleAnimation anim = new ScaleAnimation(2f, 1f, 2f, 1f, Animation.ABSOLUTE,iv.getPivotX(),Animation.ABSOLUTE,iv.getPivotY());
+                            anim.setDuration(250);
+                            anim.setFillAfter(true);
+                            iv.startAnimation(anim);
+                            int wh_orig = (int)(25f*dpConvertFactor);
+                            params = new AbsListView.LayoutParams(wh_orig,wh_orig);
+                            iv.setLayoutParams(params);
+                            ////////////// // TODO: END ANIMATION TESTING
                         }
 
                         ///////////////////////////////////////////
                         // Check game win condition.  If win end game, if not advance turn
                         if (gameBoard.gameWon(currentPlayer,x,y)) {
                             // GAME OVER MAN
-                            // TODO: ADDITIONAL CODE FOR GAME OVER CONDITION, NEED TO STOP ADDITIONAL PIECES FROM BEING PLAYED / GO INTO SCREENSHOT SHARING STUFF
+                            // TODO: ADDITIONAL CODE FOR GAME OVER CONDITION, NEED TO STOP ADDITIONAL PIECES FROM BEING PLAYED / GO INTO SCREENSHOT SHARING FRAGMENT
 
                             // Toast winner (Optional, may want to remove this depending how the EndGameFragment pans out)
                             String color;
@@ -159,7 +174,6 @@ public class GridViewAdapter extends BaseAdapter {
                     }
                 }
             });
-
 
         }
         else {
