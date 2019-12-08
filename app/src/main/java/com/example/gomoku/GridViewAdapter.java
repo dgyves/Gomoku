@@ -4,13 +4,22 @@ package com.example.gomoku;
 This class contains much (probably too much) of the logic for the game
  */
 
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.content.Context;
+import android.transition.ChangeBounds;
+import android.transition.TransitionManager;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnticipateOvershootInterpolator;
+import android.view.animation.ScaleAnimation;
 import android.widget.BaseAdapter;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 public class GridViewAdapter extends BaseAdapter {
     Piece[][] array;
@@ -91,6 +100,16 @@ public class GridViewAdapter extends BaseAdapter {
                         if (currentPlayer == 0) {
                             // set black token
                             space.setImageDrawable(context.getDrawable(R.drawable.black));
+
+                            /////////////// TODO: TESTING ANIMATION CODE
+                            ImageView iv = (ImageView) v;
+
+                            ScaleAnimation anim = new ScaleAnimation(200f, 25f, 200f, 25f);
+                            anim.setDuration(300);
+                            anim.setFillAfter(true);
+
+
+                            ////////////// // TODO: END ANIMATION TESTING
                         } else {
                             // set white token
                             space.setImageDrawable(context.getDrawable(R.drawable.white));
@@ -102,13 +121,14 @@ public class GridViewAdapter extends BaseAdapter {
                             // GAME OVER MAN
                             // TODO: ADDITIONAL CODE FOR GAME OVER CONDITION, NEED TO STOP ADDITIONAL PIECES FROM BEING PLAYED / GO INTO SCREENSHOT SHARING STUFF
 
-                            // Toast winner
+                            // Toast winner (Optional, may want to remove this depending how the EndGameFragment pans out)
                             String color;
                             if (currentPlayer == 0) {color = "BLACK";}
                             else {color = "WHITE";}
                             Toast toast = Toast.makeText(context, "GAME OVER, " + color + " WINS!", Toast.LENGTH_LONG);
                             toast.show();
                             /////////////////
+
 
                         }
                         else {
