@@ -33,4 +33,8 @@ public class Piece {
     }
 
     public int color() {return this.color;}
+
+    public void setColor(int player) {
+        this.color = player;
+    }
 }

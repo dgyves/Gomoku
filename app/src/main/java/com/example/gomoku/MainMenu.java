@@ -15,19 +15,35 @@ import android.view.View;
         setContentView(R.layout.activity_main);
     }
 
-     public void run2pGame (View view) {
-         Intent intent = new Intent(this, GameActivity.class);
-         startActivity(intent);
-     }
+    public void run1pGame (View view) {
+        Intent intent = new Intent(this, GameActivity.class);
+        intent.putExtra("Players",0);
+        startActivity(intent);
+    }
+
+    public void run2pGame (View view) {
+        Intent intent = new Intent(this, GameActivity.class);
+        intent.putExtra("Players",1);
+        startActivity(intent);
+    }
 
 
      public void openHelp(View view) {
          HelpFragment hf = new HelpFragment();
          hf.setContainerActivity(this);
-
          FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-
          transaction.replace(R.id.outer, hf);
+         transaction.addToBackStack(null);
+         transaction.commit();
+     }
+
+
+
+     public void openSettings(View view) {
+         SettingsFragment sf = new SettingsFragment();
+         sf.setContainerActivity(this);
+         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+         transaction.replace(R.id.outer, sf);
          transaction.addToBackStack(null);
          transaction.commit();
      }

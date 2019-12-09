@@ -4,10 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:elevation="20dp"
+    android:background="@drawable/mainmenubackground"
     tools:context=".HelpFragment">
 
     <TextView
         android:id="@+id/help_title"
+        android:textColor="@color/colorAccent"
         android:layout_width="380dp"
         android:layout_height="80dp"
         android:layout_margin="5dp"
@@ -21,6 +24,7 @@
 
     <TextView
         android:id="@+id/rules"
+        android:textColor="@color/colorAccent"
         android:layout_width="380dp"
         android:layout_height="40dp"
         android:layout_margin="5dp"
@@ -35,6 +39,7 @@
 
     <TextView
         android:id="@+id/rules_text"
+        android:textColor="@color/colorAccent"
         android:layout_width="380dp"
         android:layout_height="40dp"
         android:layout_margin="5dp"
@@ -49,6 +54,7 @@
 
     <TextView
         android:id="@+id/score"
+        android:textColor="@color/colorAccent"
         android:layout_width="380dp"
         android:layout_height="40dp"
         android:layout_margin="5dp"
@@ -63,6 +69,7 @@
 
     <TextView
         android:id="@+id/score_text"
+        android:textColor="@color/colorAccent"
         android:layout_width="380dp"
         android:layout_height="86dp"
         android:layout_margin="5dp"
@@ -77,6 +84,7 @@
 
     <TextView
         android:id="@+id/credits"
+        android:textColor="@color/colorAccent"
         android:layout_width="380dp"
         android:layout_height="40dp"
         android:layout_margin="5dp"
@@ -91,6 +99,7 @@
 
     <TextView
         android:id="@+id/credits_text"
+        android:textColor="@color/colorAccent"
         android:layout_width="380dp"
         android:layout_height="65dp"
         android:layout_margin="5dp"
