@@ -44,6 +44,8 @@ public class SettingsFragment extends Fragment {
         }
         return view;
     }
+public void changeNames(View view){
 
+}
 
 }
