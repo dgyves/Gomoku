@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/outer"
     android:background="@drawable/mainmenubackground"
     tools:context=".GameActivity">
 
@@ -91,6 +92,7 @@
         android:layout_width="120dp"
         android:layout_height="60dp"
         android:text="Settings"
+        android:onClick="openSettings"
         app:layout_constraintBottom_toBottomOf="@+id/help"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -111,6 +113,7 @@
         android:layout_width="120dp"
         android:layout_height="60dp"
         android:text="Help"
+        android:onClick="openHelp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/confirm3ettings"
         app:layout_constraintHorizontal_bias="0.5"

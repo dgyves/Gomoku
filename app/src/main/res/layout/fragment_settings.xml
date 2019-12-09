@@ -12,11 +12,12 @@
         android:id="@+id/settings_title"
         android:layout_width="380dp"
         android:layout_height="80dp"
-        android:layout_margin="5dp"
+        android:background="@drawable/drawable_back"
         android:gravity="center"
-        android:text="Settings"
-        android:textColor="@color/colorAccent"
+        android:text="SETTINGS"
+        android:textColor="@color/transparentWhite"
         android:textSize="50dp"
+        app:layout_constraintBottom_toTopOf="@+id/names_title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,65 +25,108 @@
 
     <TextView
         android:id="@+id/names_title"
-        android:textColor="@color/colorAccent"
-        android:textSize="40dp"
         android:layout_width="370dp"
         android:layout_height="70dp"
-        android:layout_margin="10dp"
+        android:background="@drawable/drawable_back"
         android:gravity="center"
-        android:text="Names"
+        android:text="Change Names"
+        android:textColor="@color/transparentWhite"
+        android:textSize="40dp"
+        app:layout_constraintBottom_toTopOf="@+id/player1edit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/settings_title" />
 
+
     <EditText
-        android:id="@+id/player1"
+        android:id="@+id/player1edit"
         android:layout_width="180dp"
         android:layout_height="70dp"
-        android:text="Player 1"
-        android:textSize="30dp"
-        android:layout_margin="10dp"
+        android:background="@color/player1Black"
         android:gravity="center"
-        app:layout_constraintEnd_toStartOf="@+id/player2"
+        android:textColor="@color/player2White"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toTopOf="@+id/confirm_names"
+        app:layout_constraintEnd_toStartOf="@+id/player2edit"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/names_title" />
 
     <EditText
-        android:id="@+id/player2"
+        android:id="@+id/player2edit"
         android:layout_width="180dp"
         android:layout_height="70dp"
         android:layout_margin="10dp"
+        android:background="@color/player2White"
         android:gravity="center"
-        android:text="Player 2"
+        android:textColor="@color/player1Black"
         android:textSize="30dp"
+        app:layout_constraintBottom_toBottomOf="@+id/player1edit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/player1"
-        app:layout_constraintTop_toBottomOf="@+id/names_title" />
+        app:layout_constraintStart_toEndOf="@+id/player1edit"
+        app:layout_constraintTop_toTopOf="@+id/player1edit" />
 
     <Button
-        android:id="@+id/share_button"
-        android:layout_width="370dp"
+        android:id="@+id/confirm_names"
+        android:layout_width="180dp"
         android:layout_height="70dp"
-        android:layout_margin="10dp"
-        android:text="Sound ON/OFF"
+        android:text="Confirm Names"
+        android:onClick="changeNames"
+        app:layout_constraintBottom_toTopOf="@+id/sound_title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/player1" />
+        app:layout_constraintTop_toBottomOf="@+id/player1edit" />
+
+    <TextView
+        android:id="@+id/sound_title"
+        android:layout_width="370dp"
+        android:layout_height="70dp"
+        android:background="@drawable/drawable_back"
+        android:gravity="center"
+        android:text="Toggle Sound"
+        android:textColor="@color/transparentWhite"
+        android:textSize="40dp"
+        app:layout_constraintBottom_toTopOf="@+id/on_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/confirm_names" />
+
+    <Button
+        android:id="@+id/on_button"
+        android:layout_width="180dp"
+        android:layout_height="70dp"
+        android:text="ON"
+        app:layout_constraintBottom_toTopOf="@+id/restart_button"
+        app:layout_constraintEnd_toStartOf="@+id/off_button"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sound_title" />
+
+    <Button
+        android:id="@+id/off_button"
+        android:layout_width="180dp"
+        android:layout_height="70dp"
+        android:layout_margin="10dp"
+        android:text="OFF"
+        app:layout_constraintBottom_toBottomOf="@+id/on_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/on_button"
+        app:layout_constraintTop_toTopOf="@+id/on_button" />
 
     <Button
         android:id="@+id/restart_button"
         android:layout_width="370dp"
         android:layout_height="70dp"
-        android:layout_margin="10dp"
-        android:layout_marginTop="156dp"
         android:text="RESET"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.609"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/share_button" />
+        app:layout_constraintTop_toBottomOf="@+id/on_button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

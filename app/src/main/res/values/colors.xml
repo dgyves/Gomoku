@@ -5,4 +5,6 @@
     <color name="colorAccent">#D81B60</color>
     <color name="transparentGreen">#887BFF00</color>
     <color name="transparentWhite">#88FFFFFF</color>
+    <color name="player1Black">#000000</color>
+    <color name="player2White">#FFFFFF</color>
 </resources>

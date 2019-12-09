@@ -10,12 +10,13 @@
 
     <TextView
         android:id="@+id/help_title"
-        android:textColor="@color/colorAccent"
         android:layout_width="380dp"
-        android:layout_height="80dp"
-        android:layout_margin="5dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         android:gravity="center"
-        android:text="Help"
+        android:text="HELP"
+        android:background="@drawable/drawable_back"
+        android:textColor="@color/transparentWhite"
         android:textSize="50dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.578"
@@ -24,12 +25,13 @@
 
     <TextView
         android:id="@+id/rules"
-        android:textColor="@color/colorAccent"
         android:layout_width="380dp"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
         android:layout_margin="5dp"
+        android:background="@drawable/drawable_back"
         android:gravity="center"
         android:text="Rules"
+        android:textColor="@color/transparentWhite"
         android:textSize="35dp"
         app:layout_constraintBottom_toTopOf="@+id/rules_text"
         app:layout_constraintEnd_toEndOf="parent"
@@ -39,12 +41,13 @@
 
     <TextView
         android:id="@+id/rules_text"
-        android:textColor="@color/colorAccent"
         android:layout_width="380dp"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
         android:layout_margin="5dp"
         android:gravity="center"
         android:text="@string/rules"
+        android:background="@drawable/drawable_back"
+        android:textColor="@color/transparentWhite"
         android:textSize="25dp"
         app:layout_constraintBottom_toTopOf="@+id/score"
         app:layout_constraintEnd_toEndOf="parent"
@@ -54,12 +57,13 @@
 
     <TextView
         android:id="@+id/score"
-        android:textColor="@color/colorAccent"
         android:layout_width="380dp"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
         android:layout_margin="5dp"
+        android:background="@drawable/drawable_back"
         android:gravity="center"
         android:text="Score"
+        android:textColor="@color/transparentWhite"
         android:textSize="35dp"
         app:layout_constraintBottom_toTopOf="@+id/score_text"
         app:layout_constraintEnd_toEndOf="parent"
@@ -69,7 +73,8 @@
 
     <TextView
         android:id="@+id/score_text"
-        android:textColor="@color/colorAccent"
+        android:background="@drawable/drawable_back"
+        android:textColor="@color/transparentWhite"
         android:layout_width="380dp"
         android:layout_height="86dp"
         android:layout_margin="5dp"
@@ -84,12 +89,13 @@
 
     <TextView
         android:id="@+id/credits"
-        android:textColor="@color/colorAccent"
         android:layout_width="380dp"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
         android:layout_margin="5dp"
+        android:background="@drawable/drawable_back"
         android:gravity="center"
         android:text="Credits"
+        android:textColor="@color/transparentWhite"
         android:textSize="35dp"
         app:layout_constraintBottom_toTopOf="@+id/credits_text"
         app:layout_constraintEnd_toEndOf="parent"
@@ -99,12 +105,13 @@
 
     <TextView
         android:id="@+id/credits_text"
-        android:textColor="@color/colorAccent"
         android:layout_width="380dp"
-        android:layout_height="65dp"
+        android:layout_height="wrap_content"
         android:layout_margin="5dp"
+        android:background="@drawable/drawable_back"
         android:gravity="center"
         android:text="@string/credits"
+        android:textColor="@color/transparentWhite"
         android:textSize="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
