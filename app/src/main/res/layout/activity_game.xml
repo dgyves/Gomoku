@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:id="@+id/outer"
     android:background="@drawable/mainmenubackground"
-    tools:context=".GameActivity">
+    tools:context=".GameActivity"
+    android:id="@+id/gameActivityLayout">
 
     <GridView
         android:id="@+id/gridView"
@@ -62,6 +63,7 @@
         android:layout_marginStart="16dp"
         android:textColor="#CC2222"
         android:text="Reset Game"
+        android:background="#999999"
         app:layout_constraintBottom_toTopOf="@+id/save"
         app:layout_constraintEnd_toEndOf="@+id/gridView"
         app:layout_constraintHorizontal_bias="0.5"
