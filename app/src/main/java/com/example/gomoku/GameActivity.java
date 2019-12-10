@@ -35,6 +35,7 @@ public class GameActivity extends AppCompatActivity {
     Uri currentPhotoUri;
     String currentPhotoPath;
     File file;
+    GridView gv;
     public static Bitmap game_result;
     public static String name1;
     public static String name2;
@@ -52,7 +53,7 @@ public class GameActivity extends AppCompatActivity {
         boardObject = new Board(numPlayers);
 
         // Define gridview & parameters
-        GridView gv = findViewById(R.id.gridView);
+        gv = findViewById(R.id.gridView);
         gv.setVerticalScrollBarEnabled(false);
         gv.setHorizontalScrollBarEnabled(false);
         gv.setVerticalSpacing(0);
@@ -60,6 +61,7 @@ public class GameActivity extends AppCompatActivity {
         gv.setStretchMode(GridView.NO_STRETCH);
 
         gvAdapter = new GridViewAdapter(this, boardObject);
+        gvAdapter.setPlayers(numPlayers);
         gv.setAdapter(gvAdapter);
 
         //If names changed from MainMenu settings, keep same name
