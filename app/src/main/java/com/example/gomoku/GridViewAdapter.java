@@ -22,6 +22,8 @@ public class GridViewAdapter extends BaseAdapter {
     Board gameBoard;
     Context context;
     GameActivity containerActivity;
+    int multiplayer;
+    final int PIECE_DRAWTIME = 250;
 
     // <value in dp> * dpConvertFactor = <equivalent pixel value>
     float dpConvertFactor;
@@ -37,6 +39,11 @@ public class GridViewAdapter extends BaseAdapter {
     @Override
     public int getCount() {
         return 15 * 15;
+    }
+
+    public void setPlayers(int multi) {
+        // 0 if AI game, 1 if human v. human
+        this.multiplayer = multi;
     }
 
     @Override
@@ -103,17 +110,14 @@ public class GridViewAdapter extends BaseAdapter {
                             // ANIMATE PIECE PLACEMENT
                             ImageView iv = (ImageView) v;
                             ScaleAnimation anim = new ScaleAnimation(0, 1f, 0, 1f, Animation.ABSOLUTE,iv.getPivotX(),Animation.ABSOLUTE,iv.getPivotY());
-                            anim.setDuration(250);
+                            anim.setDuration(PIECE_DRAWTIME);
                             iv.startAnimation(anim);
 
 
                         ///////////////////////////////////////////
-                        // Check game win condition.  If win end game, if not advance turn
+                        // Check if human player won.  If win end game, if not advance to next player
                         if (gameBoard.gameWon(currentPlayer,x,y)) {
                             // GAME OVER MAN
-                            // TODO: ANIMATE WINNING PIECES(?) AND LAUNCH ENDGAME FRAGMENT
-                            // TODO: ADD ANIMATION AND/OR DISTINCTION OF WINNING PIECES
-                            // TODO: ADD MESSAGE TO ENDGAMEFRAGMENT STATING WINNING COLOR?
 
                             // Prevent further pieces from being played on board after game ends
                             int winner = currentPlayer;
@@ -132,14 +136,11 @@ public class GridViewAdapter extends BaseAdapter {
                              */
 
 
-
-
-
                             // Launch EndGameFragment (after short delay to allow final piece animation to complete)
                             Handler handler = new Handler();
                             Runnable r = new Runnable() {
                                 public void run() {
-                                    // To be executed after specified delay (1000ms)
+                                    // To be executed after specified delay
                                     containerActivity.currentPlayer = -1;
                                     String file_path = containerActivity.createImageFile();
                                     EndGameFragment endFrag = new EndGameFragment(containerActivity.game_result);
@@ -156,16 +157,15 @@ public class GridViewAdapter extends BaseAdapter {
                         }
                         else {
                             // Game is not over, it's the opponent's turn now
-
                             // Highlight next player's (opponent) nametag green and current player's
                             // white
                             TextView tv;
-                            if (currentPlayer==0) {
+                            if (currentPlayer == 0 && multiplayer == 1) {
                                 tv = containerActivity.findViewById(R.id.player1TV);
                                 tv.setBackgroundColor(containerActivity.getResources().getColor(R.color.transparentWhite));
                                 tv = containerActivity.findViewById(R.id.player2TV);
                                 tv.setBackgroundColor(containerActivity.getResources().getColor(R.color.transparentGreen));
-                            } else {
+                            } else if (multiplayer == 1) {
                                 tv = containerActivity.findViewById(R.id.player2TV);
                                 tv.setBackgroundColor(containerActivity.getResources().getColor(R.color.transparentWhite));
                                 tv = containerActivity.findViewById(R.id.player1TV);
@@ -173,9 +173,44 @@ public class GridViewAdapter extends BaseAdapter {
                             }
 
                             // Advance current player tracker
-                            containerActivity.currentPlayer = (1-currentPlayer);
-                        }
+                            containerActivity.currentPlayer = (1 - currentPlayer);
 
+                            // If it's an AI game, now take the computer's turn
+                            if (containerActivity.currentPlayer == 1 && multiplayer == 0) {
+                                int[] aiMoveCoords = aiTakesATurn();
+
+                                // Check if game is over
+                                if (gameBoard.gameWon(containerActivity.currentPlayer, aiMoveCoords[0], aiMoveCoords[1])) {
+                                    // GAME OVER, COMPUTER WON
+                                    // Prevent further pieces from being played on board after game ends
+                                    int winner = currentPlayer;
+                                    currentPlayer = -1;
+                                    containerActivity.currentPlayer = -1;
+
+                                    // Launch EndGameFragment (after short delay to allow final piece animation to complete)
+                                    Handler handler = new Handler();
+                                    Runnable r = new Runnable() {
+                                        public void run() {
+                                            // To be executed after specified delay
+                                            containerActivity.currentPlayer = -1;
+                                            String file_path = containerActivity.createImageFile();
+                                            EndGameFragment endFrag = new EndGameFragment(containerActivity.game_result);
+                                            endFrag.setContainerActivity(containerActivity);
+                                            FragmentManager fragMgr = containerActivity.getSupportFragmentManager();
+                                            FragmentTransaction transaction = fragMgr.beginTransaction();
+                                            transaction.replace(R.id.gameActivityLayout, endFrag);
+                                            transaction.addToBackStack(null);
+                                            transaction.commit();
+                                        }
+                                    };
+                                    handler.postDelayed(r, 2000);
+
+                                }
+                                else {
+                                    containerActivity.currentPlayer = 0;
+                                }
+                            }
+                        }
                     }
                     else {
                         // Space clicked was not blank
@@ -193,6 +228,208 @@ public class GridViewAdapter extends BaseAdapter {
     }
 
 
+    private int[] aiTakesATurn() {
+        int blackInARow = 1;
+        int bestBlackInARow = 1;
+        int whiteInARow = 1;
+        int bestWhiteInARow = 1;
+        int[] defensivePlay = new int[]{0,0}; // dummy values
+        int[] bestMove = defensivePlay;
+        boolean blank = false;
+
+        for (int i = 0; i < 15; i++) {
+            for (int j = 0; j < 15; j++) {
+                 int x = j;
+                 int y = i;
+
+                // BLACK PIECE FOUND
+                if (array[x][y].color() == 0) {
+                    //HORIZONTAL AXIS///////////////////////////////////////////////////////////////
+                    // CHECK LEFT
+                    blank = false;
+                    while (x>0) {
+                        x--;
+                        if (array[x][y].color() == 0) {
+                            blackInARow++;
+                        } else {
+                            if (array[x][y].color() == -1) {
+                                blank = true;
+                                defensivePlay = new int[]{x,y};
+                            }
+                            x = j;
+                            break;
+                        }
+                    }
+                    // CHECK RIGHT
+                    while (x<14) {
+                        x++;
+                        if (array[x][y].color() == 0) {
+                            blackInARow++;
+                        } else {
+                            if (array[x][y].color() == -1) {
+                                blank = true;
+                                defensivePlay = new int[]{x,y};
+                            }
+                            x = j;
+                            break;
+                        }
+                    }
+                    if (blackInARow >= bestBlackInARow && blank == true) {
+                        bestBlackInARow = blackInARow;
+                        bestMove = defensivePlay;
+                    }
+
+                    //VERTICAL AXIS/////////////////////////////////////////////////////////////////
+                    // CHECK UP
+                    x = j;
+                    y = i;
+                    blackInARow = 1;
+                    blank = false;
+                    while (y>0) {
+                        y--;
+                        if (array[x][y].color() == 0) {
+                            blackInARow++;
+                        } else {
+                            if (array[x][y].color() == -1) {
+                                blank = true;
+                                defensivePlay = new int[]{x,y};
+                            }
+                            y = i;
+                            break;
+                        }
+                    }
+                    // CHECK DOWN
+                    while (y<14) {
+                        y++;
+                        if (array[x][y].color() == 0) {
+                            blackInARow++;
+                        } else {
+                            if (array[x][y].color() == -1) {
+                                blank = true;
+                                defensivePlay = new int[]{x,y};
+                            }
+                            y = i;
+                            break;
+                        }
+                    }
+                    if (blackInARow >= bestBlackInARow && blank == true) {
+                        bestBlackInARow = blackInARow;
+                        bestMove = defensivePlay;
+                    }
+
+                    //DIAGONAL AXIS 1 (NW TO SE)////////////////////////////////////////////////////
+                    // CHECK UPLEFT
+                    x = j;
+                    y = i;
+                    blackInARow = 1;
+                    blank = false;
+                    while (x>0 && y>0) {
+                        x--;
+                        y--;
+                        if (array[x][y].color() == 0) {
+                            blackInARow++;
+                        } else {
+                            if (array[x][y].color() == -1) {
+                                blank = true;
+                                defensivePlay = new int[]{x,y};
+                            }
+                            x = j;
+                            y = i;
+                            break;
+                        }
+                    }
+                    // CHECK DOWNRIGHT
+                    while (x<14 && y<14) {
+                        x++;
+                        y++;
+                        if (array[x][y].color() == 0) {
+                            blackInARow++;
+                        } else {
+                            if (array[x][y].color() == -1) {
+                                blank = true;
+                                defensivePlay = new int[]{x,y};
+                            }
+                            x = j;
+                            y = i;
+                            break;
+                        }
+                    }
+                    if (blackInARow >= bestBlackInARow && blank == true) {
+                        bestBlackInARow = blackInARow;
+                        bestMove = defensivePlay;
+                    }
+
+                    //DIAGONAL AXIS 2 (SW TO NE)////////////////////////////////////////////////////
+                    // CHECK DOWNLEFT
+                    x = j;
+                    y = i;
+                    blackInARow = 1;
+                    blank = false;
+                    while (x>0 && y<14) {
+                        x--;
+                        y++;
+                        if (array[x][y].color() == 0) {
+                            blackInARow++;
+                        } else {
+                            if (array[x][y].color() == -1) {
+                                blank = true;
+                                defensivePlay = new int[]{x,y};
+                            }
+                            x = j;
+                            y = i;
+                            break;
+                        }
+                    }
+                    // CHECK UPRIGHT
+                    while (x<14 && y>0) {
+                        x++;
+                        y--;
+                        if (array[x][y].color() == 0) {
+                            blackInARow++;
+                        } else {
+                            if (array[x][y].color() == -1) {
+                                blank = true;
+                                defensivePlay = new int[]{x,y};
+                            }
+                            x = j;
+                            y = i;
+                            break;
+                        }
+                    }
+                    if (blackInARow >= bestBlackInARow && blank == true) {
+                        bestBlackInARow = blackInARow;
+                        bestMove = defensivePlay;
+                    }
+
+                    // WHEW, all 4 axes have been checked and bestMove should be the [x,y] coords
+                    // of an optimal defensive move
+                }
+            }
+        }
+        // Board has been completely iterated over
+        int x = bestMove[0];
+        int y = bestMove[1];
+
+
+        // Place a white piece after a delay to allow the human's black piece to finish animating
+        array[x][y].setColor(1);
+        final ImageView iv = (ImageView) containerActivity.gv.getChildAt(y*15+x);
+
+        Handler handler = new Handler();
+        Runnable r = new Runnable() {
+            public void run() {
+                ScaleAnimation anim = new ScaleAnimation(0, 1f, 0, 1f, Animation.ABSOLUTE,iv.getPivotX(),Animation.ABSOLUTE,iv.getPivotY());
+                anim.setDuration(PIECE_DRAWTIME);
+                iv.setImageDrawable(context.getDrawable(R.drawable.white));
+                iv.startAnimation(anim);
+            }
+        };
+        handler.postDelayed(r, PIECE_DRAWTIME + 200);
+
+        return bestMove;
+    }
+
+
     /**
      * Check whether a space on the board is blank and place the player's token if so
      * @param x x-coord on game grid
@@ -207,7 +444,6 @@ public class GridViewAdapter extends BaseAdapter {
         }
         return false;
     }
-
 
 }
 
