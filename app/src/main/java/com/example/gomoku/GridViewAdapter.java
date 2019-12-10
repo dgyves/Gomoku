@@ -120,6 +120,21 @@ public class GridViewAdapter extends BaseAdapter {
                             currentPlayer = -1;
                             containerActivity.currentPlayer = -1;
 
+
+                            /*
+                            String color;
+                            if (currentPlayer == 0) {color = "BLACK";}
+                            else {color = "WHITE";}
+                            Toast toast = Toast.makeText(context, "GAME OVER, " + color + " WINS!", Toast.LENGTH_LONG);
+                            toast.show();
+
+                            I might use this to get winner and loser for email intent
+                             */
+
+
+
+
+
                             // Launch EndGameFragment (after short delay to allow final piece animation to complete)
                             Handler handler = new Handler();
                             Runnable r = new Runnable() {
