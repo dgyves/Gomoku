@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -67,5 +68,18 @@ import android.widget.TextView;
      }
      public String getName2(){
          return name2;
+     }
+
+     public void shareGame(View view) {
+     }
+
+     public void openContacts(View view) {
+     }
+
+     public void resetGame(View view) {
+     }
+
+     public Bitmap getGame_result(){
+         return null;
      }
  }

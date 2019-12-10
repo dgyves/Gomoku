@@ -4,26 +4,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/outer"
     android:background="@drawable/mainmenubackground"
-    tools:context=".GameActivity">
+    tools:context=".GameActivity"
+    android:id="@+id/gameActivityLayout">
 
-    <GridView
-        android:id="@+id/gridView"
-        android:layout_width="375dp"
-        android:layout_height="375dp"
-        android:columnWidth="25dp"
-        android:layout_margin="0dp"
-        android:padding="0dp"
-        android:numColumns="15"
-        android:verticalSpacing="0dp"
-        android:horizontalSpacing="0dp"
-        android:background="#FFFFFFFF"
+    <LinearLayout
+        android:id="@+id/linear_grid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:background="@color/player1Black"
         app:layout_constraintBottom_toTopOf="@+id/reset"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/player1TV"></GridView>
+        app:layout_constraintTop_toBottomOf="@+id/player1TV">
+
+
+        <GridView
+            android:id="@+id/gridView"
+            android:layout_width="375dp"
+            android:layout_height="375dp"
+            android:columnWidth="25dp"
+            android:layout_margin="0dp"
+            android:padding="0dp"
+            android:numColumns="15"
+            android:verticalSpacing="0dp"
+            android:horizontalSpacing="0dp"
+            android:background="#FFFFFFFF"
+            ></GridView>
+
+    </LinearLayout>
 
     <TextView
         android:id="@+id/player1TV"
@@ -36,8 +47,8 @@
         android:gravity="center"
         android:text="Player 1"
         android:textSize="30dp"
-        app:layout_constraintBottom_toTopOf="@+id/gridView"
-        app:layout_constraintStart_toStartOf="@+id/gridView"
+        app:layout_constraintBottom_toTopOf="@+id/linear_grid"
+        app:layout_constraintStart_toStartOf="@+id/linear_grid"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -52,7 +63,7 @@
         android:text="Player 2"
         android:textSize="30dp"
         app:layout_constraintBottom_toBottomOf="@+id/player1TV"
-        app:layout_constraintEnd_toEndOf="@+id/gridView"
+        app:layout_constraintEnd_toEndOf="@+id/linear_grid"
         app:layout_constraintTop_toTopOf="@+id/player1TV" />
 
     <Button
@@ -62,11 +73,12 @@
         android:layout_marginStart="16dp"
         android:textColor="#CC2222"
         android:text="Reset Game"
+        android:background="#999999"
         app:layout_constraintBottom_toTopOf="@+id/save"
-        app:layout_constraintEnd_toEndOf="@+id/gridView"
+        app:layout_constraintEnd_toEndOf="@+id/linear_grid"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gridView"
+        app:layout_constraintTop_toBottomOf="@+id/linear_grid"
         android:onClick="resetGame"/>
 
     <Button

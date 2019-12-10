@@ -4,22 +4,18 @@ package com.example.gomoku;
 This class contains much (probably too much) of the logic for the game
  */
 
-import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
 import android.content.Context;
-import android.transition.ChangeBounds;
-import android.transition.TransitionManager;
+import android.graphics.Bitmap;
+import android.os.Handler;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AnticipateOvershootInterpolator;
+import android.view.animation.Animation;;
 import android.view.animation.ScaleAnimation;
 import android.widget.BaseAdapter;
-import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 public class GridViewAdapter extends BaseAdapter {
     Piece[][] array;
@@ -100,35 +96,47 @@ public class GridViewAdapter extends BaseAdapter {
                         if (currentPlayer == 0) {
                             // set black token
                             space.setImageDrawable(context.getDrawable(R.drawable.black));
-
-                            /////////////// TODO: TESTING ANIMATION CODE
-                            ImageView iv = (ImageView) v;
-
-                            ScaleAnimation anim = new ScaleAnimation(200f, 25f, 200f, 25f);
-                            anim.setDuration(300);
-                            anim.setFillAfter(true);
-
-
-                            ////////////// // TODO: END ANIMATION TESTING
-                        } else {
+                        } else if (currentPlayer == 1) {
                             // set white token
                             space.setImageDrawable(context.getDrawable(R.drawable.white));
                         }
+                            // ANIMATE PIECE PLACEMENT
+                            ImageView iv = (ImageView) v;
+                            ScaleAnimation anim = new ScaleAnimation(0, 1f, 0, 1f, Animation.ABSOLUTE,iv.getPivotX(),Animation.ABSOLUTE,iv.getPivotY());
+                            anim.setDuration(250);
+                            iv.startAnimation(anim);
+
 
                         ///////////////////////////////////////////
                         // Check game win condition.  If win end game, if not advance turn
                         if (gameBoard.gameWon(currentPlayer,x,y)) {
                             // GAME OVER MAN
-                            // TODO: ADDITIONAL CODE FOR GAME OVER CONDITION, NEED TO STOP ADDITIONAL PIECES FROM BEING PLAYED / GO INTO SCREENSHOT SHARING STUFF
+                            // TODO: ANIMATE WINNING PIECES(?) AND LAUNCH ENDGAME FRAGMENT
+                            // TODO: ADD ANIMATION AND/OR DISTINCTION OF WINNING PIECES
+                            // TODO: ADD MESSAGE TO ENDGAMEFRAGMENT STATING WINNING COLOR?
 
-                            // Toast winner (Optional, may want to remove this depending how the EndGameFragment pans out)
-                            String color;
-                            if (currentPlayer == 0) {color = "BLACK";}
-                            else {color = "WHITE";}
-                            Toast toast = Toast.makeText(context, "GAME OVER, " + color + " WINS!", Toast.LENGTH_LONG);
-                            toast.show();
-                            /////////////////
+                            // Prevent further pieces from being played on board after game ends
+                            int winner = currentPlayer;
+                            currentPlayer = -1;
+                            containerActivity.currentPlayer = -1;
 
+                            // Launch EndGameFragment (after short delay to allow final piece animation to complete)
+                            Handler handler = new Handler();
+                            Runnable r = new Runnable() {
+                                public void run() {
+                                    // To be executed after specified delay (1000ms)
+                                    containerActivity.currentPlayer = -1;
+                                    String file_path = containerActivity.createImageFile();
+                                    EndGameFragment endFrag = new EndGameFragment(containerActivity.game_result);
+                                    endFrag.setContainerActivity(containerActivity);
+                                    FragmentManager fragMgr = containerActivity.getSupportFragmentManager();
+                                    FragmentTransaction transaction = fragMgr.beginTransaction();
+                                    transaction.replace(R.id.gameActivityLayout, endFrag);
+                                    transaction.addToBackStack(null);
+                                    transaction.commit();
+                                }
+                            };
+                            handler.postDelayed(r, 2000);
 
                         }
                         else {
@@ -155,11 +163,11 @@ public class GridViewAdapter extends BaseAdapter {
 
                     }
                     else {
+                        // Space clicked was not blank
                         return;
                     }
                 }
             });
-
 
         }
         else {
@@ -177,7 +185,7 @@ public class GridViewAdapter extends BaseAdapter {
      * @return true if the space is blank, false if not
      */
     public boolean canMoveAt(int x, int y, int player) {
-        if (array[x][y].color() == -1) {
+        if (array[x][y].color() == -1 && player != -1) {
             // Board location is empty
             array[x][y].setColor(player);
             return true;

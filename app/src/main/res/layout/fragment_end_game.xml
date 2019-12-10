@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:background="@drawable/mainmenubackground"
     android:elevation="20dp"
-    tools:context=".SettingsFragment">
+    android:id="@+id/outer"
+    tools:context=".EndGameFragment">
 
     <TextView
         android:id="@+id/end_title"
@@ -30,6 +31,7 @@
         android:layout_height="70dp"
         android:layout_margin="10dp"
         android:text="Play Again"
+        android:onClick="playAgain"
         app:layout_constraintBottom_toTopOf="@+id/share_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -42,6 +44,7 @@
         android:layout_height="70dp"
         android:layout_margin="10dp"
         android:text="Share Results"
+        android:onClick="openContacts"
         app:layout_constraintBottom_toTopOf="@+id/screenshot"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -50,14 +53,13 @@
 
     <ImageView
         android:id="@+id/screenshot"
-        android:layout_width="370dp"
-        android:layout_height="370dp"
+        android:layout_width="350dp"
+        android:layout_height="350dp"
         android:layout_margin="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/share_button"
-        tools:src="@tools:sample/avatars[0]" />
+        app:layout_constraintTop_toBottomOf="@+id/share_button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
