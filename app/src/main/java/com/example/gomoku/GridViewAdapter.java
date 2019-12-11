@@ -5,6 +5,7 @@ This class contains much (probably too much) of the logic for the game
  */
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.os.Handler;
 import android.view.View;
 import android.view.ViewGroup;
