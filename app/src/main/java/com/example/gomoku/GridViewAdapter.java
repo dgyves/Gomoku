@@ -5,7 +5,6 @@ This class contains much (probably too much) of the logic for the game
  */
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.os.Handler;
 import android.view.View;
 import android.view.ViewGroup;
@@ -74,7 +73,7 @@ public class GridViewAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int position, final View convertView, ViewGroup parent) {
         final ImageView space;
 
         if (convertView == null) {
@@ -142,12 +141,12 @@ public class GridViewAdapter extends BaseAdapter {
                                 public void run() {
                                     // To be executed after specified delay
                                     containerActivity.currentPlayer = -1;
-                                    String file_path = containerActivity.createImageFile();
+                                    containerActivity.createImageFile();
                                     EndGameFragment endFrag = new EndGameFragment(containerActivity.game_result);
                                     endFrag.setContainerActivity(containerActivity);
                                     FragmentManager fragMgr = containerActivity.getSupportFragmentManager();
                                     FragmentTransaction transaction = fragMgr.beginTransaction();
-                                    transaction.replace(R.id.gameActivityLayout, endFrag);
+                                    transaction.replace(R.id.gameActivityLayout, endFrag, "frag");
                                     transaction.addToBackStack(null);
                                     transaction.commit();
                                 }
@@ -198,7 +197,7 @@ public class GridViewAdapter extends BaseAdapter {
                                             endFrag.setContainerActivity(containerActivity);
                                             FragmentManager fragMgr = containerActivity.getSupportFragmentManager();
                                             FragmentTransaction transaction = fragMgr.beginTransaction();
-                                            transaction.replace(R.id.gameActivityLayout, endFrag);
+                                            transaction.replace(R.id.gameActivityLayout, endFrag, "frag");
                                             transaction.addToBackStack(null);
                                             transaction.commit();
                                         }
@@ -444,6 +443,8 @@ public class GridViewAdapter extends BaseAdapter {
         }
         return false;
     }
+
+
 
 }
 

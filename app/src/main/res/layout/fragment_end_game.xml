@@ -6,14 +6,15 @@
     android:layout_height="match_parent"
     android:background="@drawable/mainmenubackground"
     android:elevation="20dp"
+    android:padding="10dp"
     android:id="@+id/outer"
     tools:context=".EndGameFragment">
 
     <TextView
         android:id="@+id/end_title"
-        android:layout_width="380dp"
-        android:layout_height="80dp"
-        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="67dp"
+        android:layout_margin="5dp"
         android:background="@drawable/drawable_back"
         android:gravity="center"
         android:text="GAME OVER"
@@ -27,8 +28,8 @@
 
     <Button
         android:id="@+id/play_button"
-        android:layout_width="370dp"
-        android:layout_height="70dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:text="Play Again"
         android:onClick="playAgain"
@@ -40,8 +41,8 @@
 
     <Button
         android:id="@+id/share_button"
-        android:layout_width="370dp"
-        android:layout_height="70dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:text="Share Results"
         android:onClick="openContacts"
@@ -53,8 +54,8 @@
 
     <ImageView
         android:id="@+id/screenshot"
-        android:layout_width="350dp"
-        android:layout_height="350dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_margin="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

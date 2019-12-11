@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/outer"
+    android:padding="10dp"
     android:background="@drawable/mainmenubackground"
     tools:context=".MainMenu">
 
@@ -16,6 +17,7 @@
         android:text="GOMOKU"
         android:textColor="@color/transparentWhite"
         android:textSize="50dp"
+        android:padding="20dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/singleplayer_button"
         app:layout_constraintEnd_toEndOf="parent"
@@ -27,7 +29,7 @@
 
     <ImageView
         android:id="@+id/main_logo"
-        android:layout_width="350dp"
+        android:layout_width="match_parent"
         android:layout_height="200dp"
         android:src="@drawable/gomokulogo"
         app:layout_constraintBottom_toTopOf="@+id/textView"
@@ -39,8 +41,9 @@
 
     <Button
         android:id="@+id/singleplayer_button"
-        android:layout_width="150dp"
-        android:layout_height="100dp"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:padding="39dp"
         android:text="Human vs. AI"
         app:layout_constraintBottom_toTopOf="@+id/main_setting"
         app:layout_constraintStart_toStartOf="@+id/main_setting"
@@ -50,8 +53,9 @@
 
     <Button
         android:id="@+id/multiplayer_button"
-        android:layout_width="150dp"
-        android:layout_height="100dp"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:padding="30dp"
         android:text="Human vs. Human"
         app:layout_constraintBottom_toBottomOf="@+id/singleplayer_button"
         app:layout_constraintEnd_toEndOf="@+id/main_setting"
@@ -61,8 +65,9 @@
 
     <Button
         android:id="@+id/main_setting"
-        android:layout_width="325dp"
-        android:layout_height="100dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="35dp"
         android:text="Settings"
         android:onClick="openSettings"
         app:layout_constraintBottom_toTopOf="@+id/main_help"
@@ -74,9 +79,9 @@
 
     <Button
         android:id="@+id/main_help"
-        android:layout_width="325dp"
-        android:layout_height="100dp"
-        android:layout_marginBottom="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="35dp"
         android:text="Help"
         android:onClick="openHelp"
         app:layout_constraintBottom_toBottomOf="parent"

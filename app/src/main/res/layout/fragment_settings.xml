@@ -2,16 +2,18 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/outer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/mainmenubackground"
     android:elevation="20dp"
+    android:padding="10dp"
     tools:context=".SettingsFragment">
 
     <TextView
         android:id="@+id/settings_title"
-        android:layout_width="380dp"
-        android:layout_height="80dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:background="@drawable/drawable_back"
         android:gravity="center"
         android:text="SETTINGS"
@@ -25,8 +27,8 @@
 
     <TextView
         android:id="@+id/names_title"
-        android:layout_width="370dp"
-        android:layout_height="70dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:background="@drawable/drawable_back"
         android:gravity="center"
         android:text="Change Names"
@@ -41,10 +43,11 @@
 
     <EditText
         android:id="@+id/player1edit"
-        android:layout_width="180dp"
-        android:layout_height="70dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:background="@color/player1Black"
         android:gravity="center"
+        android:padding="20dp"
         android:textColor="@color/player2White"
         android:textSize="30dp"
         app:layout_constraintBottom_toTopOf="@+id/confirm_names"
@@ -55,11 +58,12 @@
 
     <EditText
         android:id="@+id/player2edit"
-        android:layout_width="180dp"
-        android:layout_height="70dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:background="@color/player2White"
         android:gravity="center"
+        android:padding="20dp"
         android:textColor="@color/player1Black"
         android:textSize="30dp"
         app:layout_constraintBottom_toBottomOf="@+id/player1edit"
@@ -71,9 +75,10 @@
     <Button
         android:id="@+id/confirm_names"
         android:layout_width="180dp"
-        android:layout_height="70dp"
-        android:text="Confirm Names"
+        android:layout_height="wrap_content"
         android:onClick="changeNames"
+        android:padding="20dp"
+        android:text="Confirm Names"
         app:layout_constraintBottom_toTopOf="@+id/sound_title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -82,51 +87,44 @@
 
     <TextView
         android:id="@+id/sound_title"
-        android:layout_width="370dp"
-        android:layout_height="70dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:background="@drawable/drawable_back"
         android:gravity="center"
         android:text="Toggle Sound"
         android:textColor="@color/transparentWhite"
         android:textSize="40dp"
-        app:layout_constraintBottom_toTopOf="@+id/on_button"
+        app:layout_constraintBottom_toTopOf="@+id/toggleButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/confirm_names" />
 
     <Button
-        android:id="@+id/on_button"
-        android:layout_width="180dp"
-        android:layout_height="70dp"
-        android:text="ON"
-        app:layout_constraintBottom_toTopOf="@+id/restart_button"
-        app:layout_constraintEnd_toStartOf="@+id/off_button"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sound_title" />
-
-    <Button
-        android:id="@+id/off_button"
-        android:layout_width="180dp"
-        android:layout_height="70dp"
-        android:layout_margin="10dp"
-        android:text="OFF"
-        app:layout_constraintBottom_toBottomOf="@+id/on_button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/on_button"
-        app:layout_constraintTop_toTopOf="@+id/on_button" />
-
-    <Button
         android:id="@+id/restart_button"
-        android:layout_width="370dp"
-        android:layout_height="70dp"
-        android:text="RESET"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="RESET SETTINGS"
+        android:textColor="#CC2222"
+        android:onClick="resetSetings"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/on_button" />
+        app:layout_constraintTop_toBottomOf="@+id/toggleButton" />
+
+    <ToggleButton
+        android:id="@+id/toggleButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="25dp"
+        android:text="ToggleButton"
+        android:checked="true"
+        android:onClick="toggleSound"
+        app:layout_constraintBottom_toTopOf="@+id/restart_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sound_title" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

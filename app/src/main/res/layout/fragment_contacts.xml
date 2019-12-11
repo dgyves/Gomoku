@@ -7,14 +7,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:elevation="20dp"
+    android:padding="10dp"
     android:background="@drawable/mainmenubackground"
     android:orientation="vertical">
 
     <TextView
         android:id="@+id/contacts_title"
-        android:layout_width="380dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_margin="5dp"
         android:background="@drawable/drawable_back"
         android:gravity="center"
         android:text="CONTACTS"
@@ -28,8 +29,9 @@
 
     <ListView
         android:id="@+id/contact_list_view"
-        android:layout_width="400dp"
-        android:layout_height="636dp"
+        android:layout_margin="7dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:background="@color/transparentWhite"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -37,6 +39,5 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/contacts_title" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

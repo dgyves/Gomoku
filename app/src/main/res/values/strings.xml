@@ -4,7 +4,9 @@
     <string name="rules">Black plays first, and players alternate in placing a stone of their color
         on an empty intersection. The winner is the first player to get an unbroken row of five
         pieces horizontally, vertically, or diagonally.</string>
-    <string name="score">Write scoring details here or something</string>
+    <string name="score">After each game is finished, you will have the ability to share an image of
+        the board with your contacts. In order to do so, permissions must be set for the app and at least
+        one of the contacts on this device should have an email saved.</string>
     <string name="credits">Diego D\'Gyves and Matthew Theisen</string>
 
 </resources>

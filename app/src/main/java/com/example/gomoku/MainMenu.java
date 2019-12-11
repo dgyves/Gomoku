@@ -82,4 +82,13 @@ import android.widget.TextView;
      public Bitmap getGame_result(){
          return null;
      }
+
+     public void toggleSound(View view) {
+     }
+
+     public void startMenu(View view) {
+     }
+
+     public void resetSetings(View view) {
+     }
  }

@@ -2,6 +2,7 @@ package com.example.gomoku;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.GridView;
+import android.widget.ToggleButton;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -39,6 +41,8 @@ public class GameActivity extends AppCompatActivity {
     public static Bitmap game_result;
     public static String name1;
     public static String name2;
+    public static Boolean play;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,32 +73,65 @@ public class GameActivity extends AppCompatActivity {
         name2 = MainMenu.name2;
     }
 
+    /*
+   Opens new Game Activity when user clicks on RESET GAME button
+   Param: View view
+   Returns: N/A
+    */
     public void resetGame(View view) {
         this.recreate();
     }
 
-    //// NEED TO IMPLEMENT PLAY AGAIN FUNCTION ON END GAME FRACTION
+
+    /*
+    Opens new Game Activity when user clicks on Play Again button
+    Param: View view
+    Returns: N/A
+     */
     public void playAgain(View view){
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+
+        EndGameFragment end = (EndGameFragment) getSupportFragmentManager().findFragmentByTag("frag");
+        if(end!=null){
+            transaction.remove(end);
+        }
+        transaction.commit();
+        this.recreate();
     }
 
+    /*
+    Opens new Settings fragment when user clicks on Share Results button, opens contacts list to browse
+    Param: View view
+    Returns: N/A
+     */
     public void openHelp(View view) {
         HelpFragment hf = new HelpFragment();
         hf.setContainerActivity(this);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.outer, hf);
+        transaction.replace(R.id.gameActivityLayout, hf);
         transaction.addToBackStack(null);
         transaction.commit();
     }
 
+    /*
+    Opens new Settings fragment when user clicks on Share Results button, opens contacts list to browse
+    Param: View view
+    Returns: N/A
+     */
     public void openSettings(View view) {
         SettingsFragment sf = new SettingsFragment();
         sf.setContainerActivity(this);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.outer, sf);
+        transaction.replace(R.id.gameActivityLayout, sf);
         transaction.addToBackStack(null);
         transaction.commit();
     }
 
+    /*
+    Changes player names depending on User input
+    Param: View view
+    Returns: N/A
+     */
     public void changeNames(View view) {
         TextView tv1 = findViewById(R.id.player1TV);
         TextView tv2 = findViewById(R.id.player2TV);
@@ -111,7 +148,7 @@ public class GameActivity extends AppCompatActivity {
     }
 
     /*
-    Opens new Contacts fragment when ser clicks on Share Results button, opens contacts list to browse
+    Opens new Contacts fragment when user clicks on Share Results button, opens contacts list to browse
     Param: View view
     Returns: N/A
      */
@@ -120,7 +157,7 @@ public class GameActivity extends AppCompatActivity {
         cf = new ContactsFragment(path);
         cf.setContainerActivity(this);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.outer, cf);
+        transaction.replace(R.id.gameActivityLayout, cf);
         transaction.addToBackStack(null);
         transaction.commit();
     }
@@ -218,5 +255,16 @@ public class GameActivity extends AppCompatActivity {
     }
     public String getName2(){
         return name2;
+    }
+
+    public void toggleSound(View view) {
+        play = ((ToggleButton) view).isChecked();
+    }
+
+    public void startMenu(View view) {
+        startActivity(new Intent(GameActivity.this, MainMenu.class));
+    }
+
+    public void resetSetings(View view) {
     }
 }

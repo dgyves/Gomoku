@@ -44,8 +44,13 @@ public class SettingsFragment extends Fragment {
         }
         return view;
     }
-public void changeNames(View view){
 
-}
+    public void changeNames(View view){
+    }
 
+    public void toggleSound(View view) {
+    }
+
+    public void resetSetings(View view) {
+    }
 }
