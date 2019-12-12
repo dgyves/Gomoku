@@ -119,7 +119,7 @@
         android:layout_height="wrap_content"
         android:padding="25dp"
         android:text="ToggleButton"
-        android:checked="true"
+        android:checked="false"
         android:onClick="toggleSound"
         app:layout_constraintBottom_toTopOf="@+id/restart_button"
         app:layout_constraintEnd_toEndOf="parent"

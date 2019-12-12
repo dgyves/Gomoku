@@ -8,10 +8,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.ToggleButton;
+
+import static com.example.gomoku.GameActivity.play;
 
 public class SettingsFragment extends Fragment {
 
     public Activity containerActivity = null;
+    private static Bundle bundle = new Bundle();
+    ToggleButton tg;
 
     public void setContainerActivity(Activity containerActivity) {
         this.containerActivity = containerActivity;
@@ -29,6 +34,7 @@ public class SettingsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_settings, container, false);
         EditText e1 = view.findViewById(R.id.player1edit);
         EditText e2 = view.findViewById(R.id.player2edit);
+        tg=(ToggleButton) view.findViewById(R.id.toggleButton);
 
         if (containerActivity.getClass() == MainMenu.class){
             System.out.println("parent is MainMenu");
@@ -52,5 +58,16 @@ public class SettingsFragment extends Fragment {
     }
 
     public void resetSetings(View view) {
+    }
+
+    public void onPause() {
+        super.onPause();
+        bundle.putBoolean("ToggleButtonState", play);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        tg.setChecked(bundle.getBoolean("ToggleButtonState",false));
     }
 }

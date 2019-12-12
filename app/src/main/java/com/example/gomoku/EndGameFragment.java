@@ -37,9 +37,7 @@ public class EndGameFragment extends Fragment {
         return view;
     }
 
-    public void openContacts(View view){
-    }
+    public void openContacts(View view){}
 
-    public void playAgain(View view){
-    }
+    public void playAgain(View view){}
 }
