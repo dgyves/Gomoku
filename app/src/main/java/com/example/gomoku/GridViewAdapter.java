@@ -6,6 +6,8 @@ This class contains much (probably too much) of the logic for the game
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.media.MediaPlayer;
+import android.os.AsyncTask;
 import android.os.Handler;
 import android.view.View;
 import android.view.ViewGroup;
@@ -124,17 +126,7 @@ public class GridViewAdapter extends BaseAdapter {
                             currentPlayer = -1;
                             containerActivity.currentPlayer = -1;
 
-
-                            /*
-                            String color;
-                            if (currentPlayer == 0) {color = "BLACK";}
-                            else {color = "WHITE";}
-                            Toast toast = Toast.makeText(context, "GAME OVER, " + color + " WINS!", Toast.LENGTH_LONG);
-                            toast.show();
-
-                            I might use this to get winner and loser for email intent
-                             */
-
+                            new PlaySoundSyncTask(containerActivity, R.raw.game_end).execute();
 
                             // Launch EndGameFragment (after short delay to allow final piece animation to complete)
                             Handler handler = new Handler();
@@ -187,6 +179,8 @@ public class GridViewAdapter extends BaseAdapter {
                                     currentPlayer = -1;
                                     containerActivity.currentPlayer = -1;
 
+                                    new PlaySoundSyncTask(containerActivity, R.raw.game_end).execute();
+
                                     // Launch EndGameFragment (after short delay to allow final piece animation to complete)
                                     Handler handler = new Handler();
                                     Runnable r = new Runnable() {
@@ -225,6 +219,26 @@ public class GridViewAdapter extends BaseAdapter {
             space = (ImageView) convertView;
         }
         return space;
+    }
+
+    public static class PlaySoundSyncTask extends AsyncTask<Integer, Void, Integer> {
+        private MediaPlayer player;
+        Integer id;
+        private Context context;
+
+        protected PlaySoundSyncTask(Context c, Integer i) {
+            context = c;
+            id = i;
+        }
+        @Override
+        protected Integer doInBackground(Integer...url){
+            if (GameActivity.play) {
+                player = MediaPlayer.create(context, id);
+                player.setLooping(false);
+                player.start();
+            }
+            return 0;
+        }
     }
 
 

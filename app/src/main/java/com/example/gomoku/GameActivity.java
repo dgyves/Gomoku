@@ -5,10 +5,13 @@ import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Environment;
 import android.provider.ContactsContract;
 import android.widget.EditText;
@@ -41,7 +44,7 @@ public class GameActivity extends AppCompatActivity {
     public static Bitmap game_result;
     public static String name1;
     public static String name2;
-    public static Boolean play;
+    public static Boolean play = true;
 
 
     @Override
@@ -81,7 +84,6 @@ public class GameActivity extends AppCompatActivity {
     public void resetGame(View view) {
         this.recreate();
     }
-
 
     /*
     Opens new Game Activity when user clicks on Play Again button
@@ -246,6 +248,15 @@ public class GameActivity extends AppCompatActivity {
         return null;
     }
 
+    /*
+    When Menu button is clicked, starts MainMenu activity
+    Param: View v
+    Returns: N/A
+     */
+    public void startMenu(View view) {
+        startActivity(new Intent(GameActivity.this, MainMenu.class));
+    }
+
     public Bitmap getGame_result(){
         return game_result;
     }
@@ -253,16 +264,13 @@ public class GameActivity extends AppCompatActivity {
     public String getName1(){
         return name1;
     }
+
     public String getName2(){
         return name2;
     }
 
     public void toggleSound(View view) {
         play = ((ToggleButton) view).isChecked();
-    }
-
-    public void startMenu(View view) {
-        startActivity(new Intent(GameActivity.this, MainMenu.class));
     }
 
     public void resetSetings(View view) {
